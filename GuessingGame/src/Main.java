@@ -57,6 +57,23 @@ public class Main {
                     }
                 }while (isGameContinue);
             }
+            else if(menuInput == 3){
+                if(letterScore == 0)
+                    System.out.println("Guess the Alphabet Score: Have not played yet");
+                else
+                    System.out.println("Guess The Alphabet Score: " + letterScore);
+                if(numberScore == 0)
+                    System.out.println("Guess the Number Score: Have not played yet");
+                else
+                    System.out.println("Guess The Number Score: " + numberScore);
+
+                System.out.println("Total score: " + (numberScore + letterScore));
+            }
+            else if(menuInput == 4){
+                ShowCredit();
+            }else{
+                System.out.println("Invalid option, Please try again");
+            }
             Menu();
             menuInput = input.nextInt();
         }
@@ -121,7 +138,6 @@ public class Main {
         GuessTheNumberInstructions(1);
         System.out.println("Good Luck! ");
         System.out.println("Easy:");
-        chances = 5;
         randomNumber = random.nextInt(15);
 
         while (isGameContinue){
@@ -149,7 +165,6 @@ public class Main {
         GuessTheNumberInstructions(2);
         System.out.println("Good Luck! ");
         System.out.println("Medium:");
-        chances = 5;
         randomNumber = random.nextInt(20);
 
         while (isGameContinue){
@@ -177,7 +192,6 @@ public class Main {
         GuessTheNumberInstructions(3);
         System.out.println("Good Luck! ");
         System.out.println("hard:");
-        chances = 5;
         randomNumber = random.nextInt(40);
 
         while (isGameContinue){
@@ -214,6 +228,7 @@ public class Main {
             if(guessAlphabet == randomAlphabet)
             {
                 System.out.println("Correct! You won the game!");
+                letterScore += 10;
                 isGameContinue = false;
             }
             else
@@ -241,6 +256,7 @@ public class Main {
             if(guessAlphabet == randomAlphabet)
             {
                 System.out.println("Correct! You won the game!");
+                letterScore += 15;
                 isGameContinue = false;
             }
             else
@@ -266,6 +282,7 @@ public class Main {
             guessAlphabet = input.next().charAt(0);
             if(guessAlphabet == randomAlphabet){
                 System.out.println("Correct! You won the game!");
+                letterScore += 20;
                 isGameContinue = false;
             }else{
                 System.out.println("Wrong guess!");
@@ -275,5 +292,10 @@ public class Main {
         if(chances == 0){
             System.out.println("You lost the game");
         }
+    }
+
+    static void ShowCredit(){
+        Student s1 = new Student("İsmail Başar","Ekinci","200209054","Software Construction");
+        System.out.println(s1.ToString());
     }
 }
