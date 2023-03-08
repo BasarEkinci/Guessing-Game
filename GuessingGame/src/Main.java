@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Main {
 
+
+    //Global variables
     static Random random = new Random();
     static Scanner input = new Scanner(System.in);
     static int randomNumber;
@@ -15,9 +17,8 @@ public class Main {
     static int counter;
     static char randomAlphabet;
     static char guessAlphabet;
-
     static boolean isGameContinue = true;
-    static boolean isGuessingContinue = true;
+
 
 
     public static void main(String[] args) {
@@ -35,10 +36,10 @@ public class Main {
                         MediumNumberGuess();
                     }else if(startMenuInput == 3) {
                         HardNumberGuess();
-                    }else if(startMenuInput == 4){
-                        isGameContinue = false;
+                    }else{
+                        System.out.println("Invalid input. Please try again");
                     }
-                } while (isGameContinue);
+                } while (startMenuInput != 4);
             }
             else if(menuInput == 2){
                 do {
@@ -50,10 +51,10 @@ public class Main {
                         MediumAlphabetGuess();
                     }else if(startMenuInput == 3){
                         HardAlphabetGuess();
-                    }else if(startMenuInput == 4){
-                        isGameContinue = false;
+                    }else{
+                        System.out.println("Invalid input. Please try again");
                     }
-                }while (isGameContinue);
+                }while (startMenuInput != 4);
             }
             else if(menuInput == 3){
                 if(letterScore == 0)
@@ -86,7 +87,6 @@ public class Main {
         System.out.println("5. Exit");
         System.out.print("Enter you choice: ");
     }
-
     static void StartMenu(){
         System.out.println("Start Menu\n----------");
         System.out.println("Select Difficulty Level");
@@ -170,7 +170,7 @@ public class Main {
 
         guessAlphabet = letters.charAt(random.nextInt(letters.length()));
 
-        while (chances > 0 || !isGameContinue){
+        while (chances > 0 && isGameContinue){
             System.out.println("Enter a word: " + chances + " left.What is the alphabet.");
             System.out.print("===> ");
             guessAlphabet = input.next().charAt(0);
@@ -205,7 +205,7 @@ public class Main {
         }
         randomNumber = random.nextInt(bound);
 
-        while (chances > 0 ||!isGameContinue){
+        while (chances > 0 && isGameContinue){
             System.out.println("Enter your guess number from 1 to" + bound + "." + chances + " chances left.");
             System.out.print("==>");
             guessNumber = input.nextInt();
