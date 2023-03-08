@@ -26,57 +26,66 @@ public class Main {
         Menu();
         menuInput = input.nextInt();
         while (menuInput != 5){
-            if(menuInput == 1){
-                do{
-                    System.out.println("Guess The Number\n---------------");
-                    StartMenu();
-                    if(startMenuInput == 1){
-                        EasyNumberGuess();
-                    }else if(startMenuInput == 2){
-                        MediumNumberGuess();
-                    }else if(startMenuInput == 3) {
-                        HardNumberGuess();
-                    }else{
-                        System.out.println("Invalid input. Please try again");
-                    }
-                } while (startMenuInput != 4);
-            }
-            else if(menuInput == 2){
-                do {
-                    System.out.println("Guess The Alphabet\n------------------");
-                    StartMenu();
-                    if(startMenuInput == 1){
-                        EasyAlphabetGuess();
-                    }else if(startMenuInput == 2){
-                        MediumAlphabetGuess();
-                    }else if(startMenuInput == 3){
-                        HardAlphabetGuess();
-                    }else{
-                        System.out.println("Invalid input. Please try again");
-                    }
-                }while (startMenuInput != 4);
-            }
-            else if(menuInput == 3){
-                if(letterScore == 0)
-                    System.out.println("Guess the Alphabet Score: Have not played yet");
-                else
-                    System.out.println("Guess The Alphabet Score: " + letterScore);
-                if(numberScore == 0)
-                    System.out.println("Guess the Number Score: Have not played yet");
-                else
-                    System.out.println("Guess The Number Score: " + numberScore);
+            switch (menuInput){
+                case 1://Guess The Number
+                    do{
+                        System.out.println("---------------\nGuess The Number\n---------------");
+                        StartMenu();
+                        if(startMenuInput == 1){
+                            EasyNumberGuess();
+                        }else if(startMenuInput == 2){
+                            MediumNumberGuess();
+                        }else if(startMenuInput == 3) {
+                            HardNumberGuess();
+                        }else if(startMenuInput == 4){
+                            System.out.println("--Returning Main Menu--\n-----------------------");
+                        }
+                        else{
+                            System.out.println("Invalid input. Please try again");
+                        }
+                    } while (startMenuInput != 4);
+                    break;
+                case 2://Guess The Alphabet
+                    do {
+                        System.out.println("---------------\nGuess The Alphabet\n---------------------");
+                        StartMenu();
+                        if(startMenuInput == 1){
+                            EasyAlphabetGuess();
+                        }else if(startMenuInput == 2){
+                            MediumAlphabetGuess();
+                        }else if(startMenuInput == 3){
+                            HardAlphabetGuess();
+                        }else if(startMenuInput == 4){
+                            System.out.println("--Returning Main Menu--\n-----------------------");
+                        }else
+                        {
+                            System.out.println("Invalid input. Please try again");
+                        }
+                    }while (startMenuInput != 4);
+                    break;
+                case 3://Show Score
+                    if(letterScore == 0)
+                        System.out.println("Guess the Alphabet Score: Have not played yet");
+                    else
+                        System.out.println("Guess The Alphabet Score: " + letterScore);
+                    if(numberScore == 0)
+                        System.out.println("Guess the Number Score: Have not played yet");
+                    else
+                        System.out.println("Guess The Number Score: " + numberScore);
 
-                System.out.println("Total score: " + (numberScore + letterScore));
-            }
-            else if(menuInput == 4){
-                ShowCredit();
-            }else{
-                System.out.println("Invalid option, Please try again");
+                    System.out.println("Total score: " + (numberScore + letterScore));//Total Score
+                    break;
+                case 4://Show Credit
+                    ShowCredit();
+                    break;
+                default://Invalid input
+                    System.out.println("Invalid option, Please try again");
+                    break;
             }
             Menu();
             menuInput = input.nextInt();
         }
-        System.out.println("System closed");
+        System.out.println("--<System closed>--");
     }
     static void Menu(){
         System.out.println("MENU\n____");
@@ -150,7 +159,6 @@ public class Main {
     static void HardAlphabetGuess(){
         AlphabetGuessGameEvents(3);
     }
-
     static void AlphabetGuessGameEvents(int difficulty){
 
         GuessTheAlphabetInstructions(difficulty);
@@ -187,7 +195,6 @@ public class Main {
             System.out.println("You lost the game");
         }
     }
-
     static void NumberGuessGameEvents(int difficulty){
         GuessTheNumberInstructions(difficulty);
         System.out.println("Good Luck! ");
@@ -206,8 +213,8 @@ public class Main {
         randomNumber = random.nextInt(bound);
 
         while (chances > 0 && isGameContinue){
-            System.out.println("Enter your guess number from 1 to" + bound + "." + chances + " chances left.");
-            System.out.print("==>");
+            System.out.println("Enter your guess number from 1 to " + bound + ". " + chances + " chances left.");
+            System.out.print("==> ");
             guessNumber = input.nextInt();
 
             if(guessNumber > randomNumber){
@@ -230,7 +237,6 @@ public class Main {
             counter = 0;
         }
     }
-
     static void ShowCredit(){
         Student s1 = new Student("Ismail Basar","Ekinci","200209054","Software Construction");
         System.out.println(s1.ToString());
