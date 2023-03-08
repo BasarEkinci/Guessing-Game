@@ -12,9 +12,7 @@ public class Main {
     static int letterScore;
     static int menuInput;
     static int startMenuInput;
-    static int difficulty;
-    static int counter = 0;
-
+    static int counter;
     static char randomAlphabet;
     static char guessAlphabet;
 
@@ -135,146 +133,42 @@ public class Main {
         }
     }
     static void EasyNumberGuess(){
-        GuessTheNumberInstructions(1);
-        System.out.println("Good Luck! ");
-        System.out.println("Easy:");
-        randomNumber = random.nextInt(15);
-
-        while (isGameContinue){
-            System.out.println("Enter your guess number from 1 to 15. " + chances + " chances left.");
-            System.out.print("==>");
-            guessNumber = input.nextInt();
-
-            if(guessNumber > randomNumber){
-                System.out.println("Wrong! Your guess is higher.");
-                chances--;
-            }else if(guessNumber < randomNumber){
-                System.out.println("Wrong! Your guess is lower");
-                chances--;
-            }else if(randomNumber == guessNumber){
-                System.out.println("Correct! You've won the game with just " + chances + " times");
-                numberScore += 5;
-                isGameContinue = false;
-            }else if(chances == 0){
-                System.out.println("You lost the game!");
-                isGameContinue = false;
-            }
-        }
+      NumberGuessGameEvents(1);
     }
     static void MediumNumberGuess(){
-        GuessTheNumberInstructions(2);
-        System.out.println("Good Luck! ");
-        System.out.println("Medium:");
-        randomNumber = random.nextInt(20);
-
-        while (isGameContinue){
-            System.out.println("Enter your guess number from 1 to 20. " + chances + " chances left.");
-            System.out.print("==>");
-            guessNumber = input.nextInt();
-
-            if(guessNumber > randomNumber){
-                System.out.println("Wrong! Your guess is higher.");
-                chances--;
-            }else if(guessNumber < randomNumber){
-                chances--;
-                System.out.println("Wrong! Your guess is lower");
-            }else if(randomNumber == guessNumber){
-                System.out.println("Correct! You've won the game with just"  + chances + " times");
-                numberScore += 10;
-                isGameContinue = false;
-            }else if(chances == 0){
-                System.out.println("You lost the game!");
-                isGameContinue = false;
-            }
-        }
+        NumberGuessGameEvents(2);
     }
     static void HardNumberGuess(){
-        GuessTheNumberInstructions(3);
-        System.out.println("Good Luck! ");
-        System.out.println("hard:");
-        randomNumber = random.nextInt(40);
-
-        while (isGameContinue){
-            System.out.println("Enter your guess number from 1 to 40. " + chances + " chances left.");
-            System.out.print("==>");
-            guessNumber = input.nextInt();
-
-            if(guessNumber > randomNumber){
-                System.out.println("Wrong! Your guess is higher.");
-                chances--;
-            }else if(guessNumber < randomNumber){
-                chances--;
-                System.out.println("Wrong! Your guess is lower");
-            }else if(randomNumber == guessNumber){
-                System.out.println("Correct! You've won the game with just" + chances + "times");
-                numberScore += 15;
-                isGameContinue = false;
-            }else if(chances == 0){
-                System.out.println("You lost the game!");
-                isGameContinue = false;
-            }
-        }
+       NumberGuessGameEvents(3);
     }
     static void EasyAlphabetGuess(){
-        String vowels = "aeiou";
-        GuessTheAlphabetInstructions(1);
-        System.out.println("Good Luck!\nEasy:");
-        guessAlphabet = vowels.charAt(random.nextInt(vowels.length()));
-
-        while (chances > 0 || !isGameContinue){
-            System.out.println("Enter a word: " + chances + " left.What is the alphabet.");
-            System.out.print("===> ");
-            guessAlphabet = input.next().charAt(0);
-            if(guessAlphabet == randomAlphabet)
-            {
-                System.out.println("Correct! You won the game!");
-                letterScore += 10;
-                isGameContinue = false;
-            }
-            else
-            {
-                System.out.println("Wrong guess!");
-                chances--;
-            }
-        }
-        if(chances == 0)
-        {
-            System.out.println("You lost the game");
-        }
+        AlphabetGuessGameEvents(1);
     }
     static void MediumAlphabetGuess(){
-        String vowels = "qwrtypsdfghjklzxcvbnm";
-        GuessTheAlphabetInstructions(2);
-        System.out.println("Good Luck!\nMedium:");
-
-        guessAlphabet = vowels.charAt(random.nextInt(vowels.length()));
-
-        while (chances > 0 || !isGameContinue){
-            System.out.println("Enter a word: " + chances + " left.What is the alphabet.");
-            System.out.print("===> ");
-            guessAlphabet = input.next().charAt(0);
-            if(guessAlphabet == randomAlphabet)
-            {
-                System.out.println("Correct! You won the game!");
-                letterScore += 15;
-                isGameContinue = false;
-            }
-            else
-            {
-                System.out.println("Wrong guess!");
-                chances--;
-            }
-        }
-        if(chances == 0){
-            System.out.println("You lost the game");
-        }
+        AlphabetGuessGameEvents(2);
     }
     static void HardAlphabetGuess(){
-        String vowels = "bcdfghjklmnpqrstvwxyz";
-        GuessTheAlphabetInstructions(3);
-        System.out.println("Good Luck!\nMedium:");
+        AlphabetGuessGameEvents(3);
+    }
 
-        guessAlphabet = vowels.charAt(random.nextInt(vowels.length()));
+    static void AlphabetGuessGameEvents(int difficulty){
+
+        GuessTheAlphabetInstructions(difficulty);
+        String letters = "";
+        int scoreMultiplier = 0;
+        if(difficulty == 1){
+           letters = "aeiou";
+           scoreMultiplier = 10;
+        }else if(difficulty==2){
+            letters = "bcdfghjklmnpqrstvwxyz";
+            scoreMultiplier = 15;
+        }else if(difficulty == 3){
+            letters = "abcdefghIijklmnopqrstuvwxyz";
+            scoreMultiplier = 15;
+        }
+        System.out.println("Good Luck!");
+
+        guessAlphabet = letters.charAt(random.nextInt(letters.length()));
 
         while (chances > 0 || !isGameContinue){
             System.out.println("Enter a word: " + chances + " left.What is the alphabet.");
@@ -282,7 +176,7 @@ public class Main {
             guessAlphabet = input.next().charAt(0);
             if(guessAlphabet == randomAlphabet){
                 System.out.println("Correct! You won the game!");
-                letterScore += 20;
+                letterScore += scoreMultiplier;
                 isGameContinue = false;
             }else{
                 System.out.println("Wrong guess!");
@@ -294,8 +188,51 @@ public class Main {
         }
     }
 
+    static void NumberGuessGameEvents(int difficulty){
+        GuessTheNumberInstructions(difficulty);
+        System.out.println("Good Luck! ");
+        int bound = 0;
+        int scoreMultiplier = 0;
+        if(difficulty == 1){
+            scoreMultiplier = 10;
+            bound = 15;
+        }else if(difficulty == 2){
+            scoreMultiplier = 15;
+            bound = 20;
+        }else if(difficulty == 3){
+            scoreMultiplier = 20;
+            bound = 40;
+        }
+        randomNumber = random.nextInt(bound);
+
+        while (chances > 0 ||!isGameContinue){
+            System.out.println("Enter your guess number from 1 to" + bound + "." + chances + " chances left.");
+            System.out.print("==>");
+            guessNumber = input.nextInt();
+
+            if(guessNumber > randomNumber){
+                System.out.println("Wrong! Your guess is higher.");
+                counter++;
+                chances--;
+            }else if(guessNumber < randomNumber){
+                System.out.println("Wrong! Your guess is lower");
+                counter++;
+                chances--;
+            }else if(randomNumber == guessNumber){
+                System.out.println("Correct! You've won the game with just " + counter + " times");
+                counter++;
+                numberScore += scoreMultiplier;
+                isGameContinue = false;
+            }
+        }
+        if(chances == 0){
+            System.out.println("You lost the game!");
+            counter = 0;
+        }
+    }
+
     static void ShowCredit(){
-        Student s1 = new Student("İsmail Başar","Ekinci","200209054","Software Construction");
+        Student s1 = new Student("Ismail Basar","Ekinci","200209054","Software Construction");
         System.out.println(s1.ToString());
     }
 }
