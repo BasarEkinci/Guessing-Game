@@ -1,8 +1,6 @@
-import java.util.Random;
 import java.util.Scanner;
-
+import java.util.Random;
 public class Main {
-
 
     //Global variables
     static Random random = new Random();
@@ -142,13 +140,13 @@ public class Main {
         }
     }
     static void EasyNumberGuess(){
-      NumberGuessGameEvents(1);
+        NumberGuessGameEvents(1);
     }
     static void MediumNumberGuess(){
         NumberGuessGameEvents(2);
     }
     static void HardNumberGuess(){
-       NumberGuessGameEvents(3);
+        NumberGuessGameEvents(3);
     }
     static void EasyAlphabetGuess(){
         AlphabetGuessGameEvents(1);
@@ -165,8 +163,8 @@ public class Main {
         String letters = "";
         int scoreMultiplier = 0;
         if(difficulty == 1){
-           letters = "aeiou";
-           scoreMultiplier = 10;
+            letters = "aeiou";
+            scoreMultiplier = 10;
         }else if(difficulty==2){
             letters = "bcdfghjklmnpqrstvwxyz";
             scoreMultiplier = 15;
