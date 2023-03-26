@@ -276,11 +276,11 @@ public class Main {
     static void ShowCredit(){
         System.out.println("Student Name/Surname && ID");
         System.out.println("Gulsu Oz - 200209057");
-        System.out.println("Huseyin Murat - ");
-        System.out.println("Omer Akce - ");
+        System.out.println("Huseyin Murat - 200209028 ");
+        System.out.println("Omer Akce - 200209045 ");
         System.out.println("Ismail Basar Ekinci - 200209057");
-        System.out.println("Edar - ");
-        System.out.println("Emre - ");
+        System.out.println("Edar Erdem - 200209002");
+        System.out.println("Yunus Emre Bektas - 200209043 ");
         System.out.println("Course of Study: Software Construction");
     }
 
