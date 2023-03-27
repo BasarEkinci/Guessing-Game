@@ -14,8 +14,8 @@ public class Main {
     static int menuInput;
     static int startMenuInput;
     static int counter;
-    static char randomAlphabet;
-    static char guessAlphabet;
+    static String randomAlphabet;
+    static String guessAlphabet;
     static boolean isGameContinue = true;
 
 
@@ -132,15 +132,95 @@ public class Main {
                     } while (startMenuInput != 4);
                     break;
                 case 2://Guess The Alphabet
+                    int guessIndex;
+                    int randomAlphabetIndex;
                     do {
                         System.out.println("---------------\nGuess The Alphabet\n---------------------");
                         StartMenu();
                         if(startMenuInput == 1){
-                            EasyAlphabetGuess();
+                            counter = 0;
+                            String[] vowels = {"a","e","i","o","u"};
+                            randomAlphabet = vowels[random.nextInt(vowels.length)];
+                            randomAlphabetIndex = GetIndex(vowels,randomAlphabet);
+                            GuessTheAlphabetInstructions(1);
+
+                            do{
+                                System.out.println("Enter a word: " + wrongRight + " chances left. What is the alphabet?");
+                                guessAlphabet = input.next().toLowerCase();
+                                guessIndex = GetIndex(vowels,guessAlphabet);
+                                if(guessIndex == randomAlphabetIndex){
+                                    System.out.println("Correct! You've won the game with just " + counter + " times.");
+                                }else if(guessIndex < randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too low");
+                                }else if(guessIndex > randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too high");
+                                }
+
+                                if(wrongRight == 0){
+                                    System.out.println("You lost the game!\n");
+                                }
+
+                            }while (wrongRight != 0 && guessIndex != randomAlphabetIndex);
                         }else if(startMenuInput == 2){
-                            MediumAlphabetGuess();
+                            counter = 0;
+                            String[] consonants = {"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"};
+                            randomAlphabet = consonants[random.nextInt(consonants.length)];
+                            randomAlphabetIndex = GetIndex(consonants,randomAlphabet);
+                            GuessTheAlphabetInstructions(2);
+
+                            do{
+                                System.out.println("Enter a word: " + wrongRight + " chances left. What is the alphabet?");
+                                guessAlphabet = input.next().toLowerCase();
+                                guessIndex = GetIndex(consonants,guessAlphabet);
+                                if(guessIndex == randomAlphabetIndex){
+                                    System.out.println("Correct! You've won the game with just " + counter + " times.");
+                                }else if(guessIndex < randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too low");
+                                }else if(guessIndex > randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too high");
+                                }
+
+                                if(wrongRight == 0){
+                                    System.out.println("You lost the game!\n");
+                                }
+
+                            }while (wrongRight != 0 && guessIndex != randomAlphabetIndex);
                         }else if(startMenuInput == 3){
-                            HardAlphabetGuess();
+                            counter = 0;
+                            String[] consonants = {"a","b", "c", "d","e", "f", "g", "h","i", "j", "k", "l", "m", "n","o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"};
+                            randomAlphabet = consonants[random.nextInt(consonants.length)];
+                            randomAlphabetIndex = GetIndex(consonants,randomAlphabet);
+                            GuessTheAlphabetInstructions(3);
+
+                            do{
+                                System.out.println("Enter a word: " + wrongRight + " chances left. What is the alphabet?");
+                                guessAlphabet = input.next().toLowerCase();
+                                guessIndex = GetIndex(consonants,guessAlphabet);
+                                if(guessIndex == randomAlphabetIndex){
+                                    System.out.println("Correct! You've won the game with just " + counter + " times.");
+                                }else if(guessIndex < randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too low");
+                                }else if(guessIndex > randomAlphabetIndex){
+                                    wrongRight--;
+                                    counter++;
+                                    System.out.println("Wrong! Your guess was too high");
+                                }
+
+                                if(wrongRight == 0){
+                                    System.out.println("You lost the game!\n");
+                                }
+
+                            }while (wrongRight != 0 && guessIndex != randomAlphabetIndex);
                         }else if(startMenuInput == 4){
                             System.out.println("--Returning Main Menu--\n-----------------------");
                         }else
@@ -172,6 +252,15 @@ public class Main {
             menuInput = input.nextInt();
         }
         System.out.println("--<System closed>--");
+    }
+
+    static int GetIndex(String[] arr, String obj){
+        for(int i = 0; i < arr.length;i++){
+            if(arr[i].equals(obj)){
+                return i;
+            }
+        }
+        return -1;
     }
     static void Menu(){
         System.out.println("MENU\n____");
@@ -211,6 +300,7 @@ public class Main {
             System.out.println("2. You are allowed to make one guess a time");
             System.out.println("3. Each game has " + wrongRight + " chances to guess the correct vowel");
             System.out.println("4. Once you have used up all your chances, you lose the game");
+            System.out.println("\nGood Luck!\nEasy:");
         }
         if(difficulty == 2){
             wrongRight = 4;
@@ -218,6 +308,7 @@ public class Main {
             System.out.println("2. You are allowed to make one guess a time");
             System.out.println("3. Each game has " + wrongRight + " chances to guess the correct vowel");
             System.out.println("4. Once you have used up all your chances, you lose the game");
+            System.out.println("\nGood Luck!\nMedium:");
         }
         if(difficulty == 3){
             wrongRight = 5;
@@ -225,54 +316,9 @@ public class Main {
             System.out.println("2. You are allowed to make one guess a time");
             System.out.println("3. Each game has " + wrongRight + " chances to guess the correct vowel");
             System.out.println("4. Once you have used up all your chances, you lose the game");
+            System.out.println("\nGood Luck!\nHard:");
         }
     }
-    static void EasyAlphabetGuess(){
-        AlphabetGuessGameEvents(1);
-    }
-    static void MediumAlphabetGuess(){
-        AlphabetGuessGameEvents(2);
-    }
-    static void HardAlphabetGuess(){
-        AlphabetGuessGameEvents(3);
-    }
-    static void AlphabetGuessGameEvents(int difficulty){//to set score multiplier, difficulty and instructions
-
-        GuessTheAlphabetInstructions(difficulty);
-        String letters = "";
-        int scoreMultiplier = 0;
-        if(difficulty == 1){
-            letters = "aeiou";
-            scoreMultiplier = 10;
-        }else if(difficulty==2){
-            letters = "bcdfghjklmnpqrstvwxyz";
-            scoreMultiplier = 15;
-        }else if(difficulty == 3){
-            letters = "abcdefghIijklmnopqrstuvwxyz";
-            scoreMultiplier = 15;
-        }
-        System.out.println("Good Luck!");
-
-        guessAlphabet = letters.charAt(random.nextInt(letters.length()));
-
-        while (wrongRight > 0 && isGameContinue){
-            System.out.println("Enter a word: " + wrongRight + " left.What is the alphabet.");
-            System.out.print("===> ");
-            guessAlphabet = input.next().charAt(0);
-            if(guessAlphabet == randomAlphabet){
-                System.out.println("Correct! You won the game!");
-                guessTheAlphabetScore += scoreMultiplier;
-                isGameContinue = false;
-            }else{
-                System.out.println("Wrong guess!");
-                wrongRight--;
-            }
-        }
-        if(wrongRight == 0){
-            System.out.println("You lost the game");
-        }
-    }
-
     static void ShowCredit(){
         System.out.println("Student Name/Surname && ID");
         System.out.println("Gulsu Oz - 200209057");
