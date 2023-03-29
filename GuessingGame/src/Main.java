@@ -1,6 +1,5 @@
-
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 public class Main {
 
     //Global variables
@@ -81,11 +80,11 @@ public class Main {
                                 }else if(guessNumber < randomNumber){
                                     wrongRight--;
                                     counter++;
-                                    System.out.println("Wrong!Your guess was too low\n");
+                                    System.out.println("Wrong!\n");
                                 }else if (guessNumber > randomNumber){
                                     wrongRight--;
                                     counter++;
-                                    System.out.println("Wrong!Your guess was too high\n");
+                                    System.out.println("Wrong!\n");
                                 }
 
                                 if(wrongRight == 0){
@@ -112,11 +111,11 @@ public class Main {
                                 }else if(guessNumber < randomNumber){
                                     wrongRight--;
                                     counter++;
-                                    System.out.println("Wrong!Your guess was too low\n");
+                                    System.out.println("Wrong!\n");
                                 }else if (guessNumber > randomNumber){
                                     wrongRight--;
                                     counter++;
-                                    System.out.println("Wrong!Your guess was too high\n");
+                                    System.out.println("Wrong!\n");
                                 }
 
                                 if(wrongRight == 0){
